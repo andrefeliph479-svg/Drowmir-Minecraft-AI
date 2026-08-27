@@ -1,0 +1,33 @@
+name: Bootstrap Gradle Wrapper
+
+on:
+  push:
+    paths:
+      - '.github/workflows/bootstrap-gradle-wrapper.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download official Gradle wrapper JAR
+        run: |
+          mkdir -p gradle/wrapper
+          curl -fsSL https://raw.githubusercontent.com/NeoForgeMDKs/MDK-1.21.1-ModDevGradle/main/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
+
+      - name: Commit wrapper JAR
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gradle/wrapper/gradle-wrapper.jar
+          if git diff --cached --quiet; then
+            echo "Wrapper JAR already present."
+          else
+            git commit -m "build: add Gradle wrapper jar"
+            git push
+          fi
