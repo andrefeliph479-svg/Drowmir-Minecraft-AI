@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/andrefeliph479-svg/Drowmir-Minecraft-AI"
+authors="Anxios & Drowmir"
+description='''
+Companheiro de IA para Minecraft. O objetivo do projeto e criar um segundo jogador artificial capaz de conversar, acompanhar o jogador e executar tarefas no mundo.
+'''
+
+[[dependencies.${mod_id}]]
+modId="neoforge"
+type="required"
+versionRange="[${neo_version},)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
